@@ -61,6 +61,8 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'rentals.User'
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
