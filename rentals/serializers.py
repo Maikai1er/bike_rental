@@ -28,3 +28,9 @@ class RentalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rental
         fields = ('id', 'user', 'bike', 'start_time', 'end_time', 'price')
+
+    def validate(self, data):
+        user = data['user']
+        if Rental.objects.filter(user=user, end_time__isnull=True).exists():
+            raise serializers.ValidationError("You already have a rented bike.")
+        return data
